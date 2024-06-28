@@ -1,5 +1,5 @@
 # LLM_Interview_Prepare
-Maintained by [SJTU Joining AI](https://sjtujoining.com)
+本仓库是关于大模型面试中常见面试试题和面试经验的整理。这里收集了各类与大模型相关的面试题目，并提供详细的解答和分析
 
 
 # 第一部分 基础知识
