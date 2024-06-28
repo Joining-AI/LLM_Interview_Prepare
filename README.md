@@ -1,6 +1,6 @@
 # LLM_Interview_Prepare
 
-maintained by [SJTU Joining AI](https:sjtujoining.com)
+maintained by [SJTU Joining AI](https://sjtujoining.com)
 
 本仓库是关于大模型面试中常见面试试题和面试经验的整理。
 
