@@ -205,20 +205,29 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
         
      9. 什么是 提示学习（Prompting）？
            
-          9.1  为什么需要 P-tuning？        
-          9.2 P-tuning 思路是什么？        
+          9.1  为什么需要 P-tuning？
+               
+          9.2 P-tuning 思路是什么？
+              
           9.3 P-tuning 优点是什么？
+        
           9.4 P-tuning 缺点是什么？
+        
           9.5 为什么需要 指示微调（Prompt-tuning）？
+        
           9.6 指示微调（Prompt-tuning）思路是什么？
+        
           9.7 指示微调（Prompt-tuning）优点是什么？
+        
           9.8 指示微调（Prompt-tuning）缺点是什么？
+        
           9.9 指示微调（Prompt-tuning）与 Prefix-tuning 区别 是什么？
+        
           9.10 指示微调（Prompt-tuning）与 fine-tuning 区别 是什么？
         
-     10. 提示学习（Prompting）有哪些方法，能不能稍微介绍一下它们？
+     11. 提示学习（Prompting）有哪些方法，能不能稍微介绍一下它们？
      
-     11. 前缀微调（Prefix-tuning）篇
+     12. 前缀微调（Prefix-tuning）篇
      
      - 11.1 为什么需要 前缀微调（Prefix-tuning）？
      - 11.2 前缀微调（Prefix-tuning）思路是什么？
