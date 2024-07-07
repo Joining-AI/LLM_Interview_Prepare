@@ -25,13 +25,25 @@
   .bold-summary {
     font-weight: bold;
   }
+
+  /* 展开后显示更淡的蓝色底色 */
+  details[open] summary {
+    background-color: rgb(240, 248, 255);
+  }
+
+  /* 展开的内容显示更淡的蓝色底色 */
+  details[open] {
+    background-color: rgb(240, 248, 255);
+    padding: 10px; /* 增加内边距以提高可读性 */
+    border-radius: 5px; /* 使边角稍微圆润 */
+  }
 </style>
 
 # LLM_Interview_Prepare
 
 maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
-本仓库秉承开源精神，关于大模型面试中常见面试试题和面试经验的整理，同时维护大模型相关的工作与求职机会。
+本仓库秉承开源精神，维护了关于大模型面试中常见面试试题和面试经验的整理，同时维护大模型相关的工作与求职机会。
 
 # 零 写在前面
 
