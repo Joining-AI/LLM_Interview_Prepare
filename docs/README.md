@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown with CSS</title>
-    <link rel="stylesheet" type="text/css" href="src/styles.css">
-</head>
-<body>
+<style>
+  .label {
+      background-color: #80EB00;
+      color: black;
+      padding: 3px;
+      border-radius: 12px; /* 使方框为圆角 */
+  }
+  details summary {
+    list-style-type: disc;  /* 添加圆点序号 */
+    margin-left: 20px;      /* 增加与圆点的间距 */
+    font-weight: normal;    /* 确保文本不加粗 */
+    cursor: pointer;        /* 鼠标悬浮时显示为可点击状态 */
+  }
+
+  details summary strong {
+    font-weight: normal;    /* 确保 strong 标签中的文本不加粗 */
+  }
+
+  /* 鼠标悬浮时显示淡蓝色底色 */
+  details summary:hover {
+    background-color: rgb(192, 229, 241);
+  }
+
+  /* 用于加粗的类 */
+  .bold-summary {
+    font-weight: bold;
+  }
+</style>
 
 # LLM_Interview_Prepare
 
