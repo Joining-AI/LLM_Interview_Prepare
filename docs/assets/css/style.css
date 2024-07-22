@@ -1,3 +1,4 @@
+
 /* /assets/css/style.css */
 body {
   font-family: Arial, sans-serif;
@@ -6,7 +7,7 @@ body {
   min-height: 100vh;
 }
 
-.fixed-sidebar {
+.sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -22,23 +23,23 @@ body {
   height: 100vh; /* Ensure the sidebar height is equal to the viewport height */
 }
 
-.fixed-sidebar h2 {
+.sidebar h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.fixed-sidebar .description {
+.sidebar .description {
   font-size: 0.9rem;
   margin-bottom: 1rem;
   color: #555;
 }
 
-.fixed-sidebar .nav-link {
+.sidebar .nav-link {
   color: #333;
   font-weight: 500;
 }
 
-.fixed-sidebar .nav-link:hover {
+.sidebar .nav-link:hover {
   color: #007bff;
 }
 
