@@ -473,42 +473,82 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 接下来是Diffusion相关原理部分。
 
 ### 1.2 各类Diffusion模型原理篇
+
+请注意，Diffusion模型是一个数学上很好理解的模型，这里只提供部分的常见内容及其较浅的讲解。深度理解建议查看原论文。
+
 1.2.1 DDPM算法原理部分：
 <details>
   <summary><strong>简述DDPM的算法流程：</strong></summary>
-  "初始化：从带噪声的图像开始。正向扩散：逐步向数据添加高斯噪声，直到数据完全转化为无结构的噪声。反向去噪：通过模型预测并逐渐去掉每一步加入的噪声，还原得到无噪声的图像。训练：使用反向传播算法更新模型参数，以最小化正向和反向过程之间的差异。测试：对新的高噪声图像应用训练好的模型进行去噪。"
+1. 初始化：一般指去噪（模型推理）过程的初始化，指从带噪声的图像的设定开始（或纯高斯噪声）。
+
+2. 正向扩散：逐步向数据添加高斯噪声，直到数据完全转化为无结构的噪声。
+$$x_{t+1}=\alpha_{t} x_{t}+\beta_{t} \epsilon_{t}, \ \epsilon_{t} \sim \mathcal{N}(0,\mathcal{I})$$
+$$x_{t}=\bar{\alpha_t} x_{0}+\bar{\beta_t} \epsilon, \ \epsilon \sim \mathcal{N}(0,\mathcal{I})$$
+（关键点理解：(2)式可由(1)式逐步推得；其中，由式子可以看出，下一个时间步$t$时刻的图像$x_{t}$是关于上一步图像$x_{t-1}$的高斯分布，$\alpha_{t}，\beta_{t}$为预设超参，满足$\alpha_{t}+\beta_{t}=1$，同时$\alpha_{t}$递减，$\bar{\alpha_t}$为$\alpha_{0}$到$\alpha_{t}$的累乘结果，一般来讲，存在线性递减或余弦递减两种超参方案，前者为DDPM初始论文的设置，后者为原作者在Improved DDPM论文中的对比设置）
+
+3. 反向去噪：通过模型预测并逐渐去掉每一步加入的噪声，还原得到无噪声的图像。
+$$p_{\theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1},\mu_{\theta}(x_{t},t),\Sigma_{\theta}(x_{t},t))$$
+（关键点理解：此处，$\theta$代表神经网络，下表意味为“神经网络预测结果”，这里通过神经网络预测上一时刻$x_{t-1}$的高斯分布，预测其均值和方差。而实际上，根据扩散过程的定义，我们可以推导均值为：$\mu_{\theta}(x_{t},t)=\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{\beta_{t}}{1-\bar{\alpha_{t}}}\Sigma_{\theta}(x_{t},t))$，因而这里神经网络本质上是在预测噪声，也是许多人直接成预训练扩散模型神经网络为“预训练去噪器”的一个原因；具体推理过程中，直接将之前对应时刻的图像替换成推理得到的分布中任意抽取结果当作上一时刻真实图像）
+
+4. 训练：使用反向传播算法更新模型参数，以最小化正向和反向过程之间的差异，即最小化每一时刻原始正向扩散的分布和反向扩散预测的分布之间的差异，也即每一时刻添加的实际噪声和预测的噪声结果的差异。
+
+5. 测试：对新的高噪声图像应用训练好的模型进行去噪。
 </details>
 
 <details>
   <summary><strong>实现DDPM需要什么条件？</strong></summary>
-  "马尔可夫链：DDPM使用马尔可夫链来描述数据的扩散过程。马尔可夫链是一个随机过程，具有无记忆性，即在给定当前状态的情况下，未来的状态只依赖于当前状态。微小变化：DDPM通过逐步添加微小的高斯噪声来扩散数据。这些微小的变化是在数据中引入随机性的关键步骤。高斯噪声变化：DDPM使用高斯噪声来模拟数据的扩散过程。高斯噪声是一种常见的随机噪声，也称为正态分布噪声。"
+	1. 马尔可夫链：DDPM使用马尔可夫链来描述数据的扩散过程。马尔可夫链是一个随机过程，具有无记忆性，即在给定当前状态的情况下，未来的状态只依赖于当前状态。
+	   这一点可以由上一点中的公式看出，上或下一时刻的图像结果只取决于当前时刻的图像和预设的超参。
+	2. 微小变化：DDPM通过逐步添加微小的高斯噪声来扩散数据。这些微小的变化是在数据中引入随机性的关键步骤。这由预设的超参实现。具体来讲，在公式中体现为$\beta_{t}$，即方差规模的大小
+	3. 高斯噪声变化：DDPM使用高斯噪声来模拟数据的扩散过程。高斯噪声是一种常见的随机噪声，也称为正态分布噪声。
 </details>
 
 <details>
   <summary><strong>为什么DDPM加噪声的幅度是不一致的？</strong></summary>
-  "前期加噪少是为了保持数据结构的完整性，后期加噪多是为了加速扩散过程，使得模型能够更快地从噪声中恢复出清晰的数据。"
+	前期加噪少是为了保持数据结构的完整性，后期加噪多是为了加速扩散过程，使得模型能够更快地从噪声中恢复出清晰的数据。
+	这一点在原论文作者Improved DDPM论文中有具体阐述
 </details>
 
 <details>
   <summary><strong>DDPM预测噪声还是预测当前分布？</strong></summary>
-  "预测噪声，预测分布只是中间过程"
+	由之前推导，本质上预测噪声，预测分布只是中间过程
 </details>
 
 1.2.2 DDIM算法原理部分：
 <details>
   <summary><strong>DDIM是怎么实现加速采样的？</strong></summary>
-  "DDIM通过保证DDPM的三项前向条件不变：前向高斯噪声+马尔可夫链，实现逆向递推公式优化，减少逆向推理步骤"
+1. 确定性逆扩散
+
+在DDPM中，逆扩散过程是随机的。这意味着，在从某个噪声状态 $x_t$ 计算前一状态 $x_{t-1}$ 时，会引入随机噪声。具体来说，这一步涉及从一个条件高斯分布中采样。
+DDIM对这一过程做出了修改，去除了随机性，使逆扩散过程完全确定性。在DDIM中，$x_{t-1}$ 的计算直接依赖于 $x_t$ 和一个从网络学习到的噪声预测 $\epsilon_\theta(x_t, t)$。这种改动使得生成过程在给定相同的起始噪声和模型参数的情况下总是产生相同的结果，提高了过程的可重复性。
+
+2. 非马尔科夫跳步采样
+
+DDPM的采样过程是严格遵循时间顺序的，即每个时间步的输出依赖于其直接前一个时间步的状态，形成一个马尔科夫链。而DDIM允许在时间步之间进行更大的跳跃。这意味着可以直接从 $x_t$ 跳到 $x_{t-s}$（其中 $s > 1$），跳过一些中间状态。这种非马尔科夫的跳步采样大大减少了需要计算的总步骤数，从而加快了整个采样过程。
+
+3. 加速生成过程
+
+由于DDIM中的逆扩散是确定性的，并且支持跳步采样，它能显著加快生成过程。在实际应用中，如实时图像生成和视频处理等场景，这种加速非常有价值。
+
+4. 牺牲了一定的多样性
+
+虽然DDIM在效率和确定性方面有所增加，但这是以牺牲一定的输出多样性为代价的。在DDPM中，随机采样帮助探索多种可能的生成路径，从而增加了生成数据的多样性。DDIM的确定性路径意味着对于同一起始噪声，输出将总是相同的，这限制了模型输出的多样性。
+
+5. 理论上的调整
+
+在理论上，DDIM还通过对扩散和逆扩散方程的重新参数化（例如，通过改变噪声水平的方程）使其更适合非马尔科夫跳步采样和确定性逆扩散。这些改动涉及数学上的深入调整，以确保模型即使在大步长跳跃的情况下也能保持高质量的输出。
 </details>
 
 <details>
   <summary><strong>DDIM是不是确定性生成，为什么？</strong></summary>
-  "是确定性生成。因为在逆向去噪声过程中，DDIM的逆推公式，将随机噪声的部分置为0"
+	是确定性⽣成。因为在逆向去噪声过程中，DDIM的逆推公式，将随机噪声的部分置为0。具体来讲，原先生成过程相当于在得到每一步结果后基于该时间步的分布会进行一次随机采样，改进后取消了该随机采样，因而对于预训练完成的模型来讲，对于给定时间$t$和图像$x_{t}$，生成的指定时间步图像固定
 </details>
 1.2.3 Score-Based-diffusion-model：
 
 <details>
   <summary><strong>提供了什么解释扩散模型的等价方式？</strong></summary>
-  "提供了一种解释扩散模型的等价方式，其中降噪过程可以看作是沿着分数（梯度）前进"
+- 提供了⼀种解释扩散模型的等价⽅式，其中降噪过程可以看作是沿着分数（梯度）前进。
+- 这也是本整理者比较推崇的一种扩散模型解释。可以理解为，预训练扩散模型是一张导引地图，指示旅行者寻找路径攀上高山（概率高峰）的导引图
 </details>
 1.2.4 高阶采样方案：
 <details>
@@ -525,12 +565,16 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 <details>
   <summary><strong>CLIP编码特征的优缺点？</strong></summary>
-  "优点：泛化性能强，特征在同一空间下衡量，模型简单不需要额外训练。缺陷：文本描述简单'A photo of a xxx'，图文理解能力偏弱"
+优点：泛化性能强，特征在同⼀空间下衡量，模型简单不需要额外训练。
+
+缺陷：⽂本描述简单“A photo of a xxx”，图⽂理解能⼒偏弱
 </details>
 
 <details>
   <summary><strong>介绍一下BLIP/BLIP2的原理？</strong></summary>
-  "BLIP：通过多路损失函数，以及图像分块理解策略等算法，构建高质量的图像理解模型。BLIP2：在BLIP基础上，利用Q-Former构建图像与大语言模型之间的桥梁，充分利用大语言模型自身的预训练能力"
+BLIP：通过多路损失函数，以及图像分快理解策略等算法，构建⾼质量的图像理解模型。
+
+BLIP2：在BLIP基础上，利用Q-Former构建图像与⼤语⾔模型之间的桥梁，充分利⽤⼤语⾔模型⾃身的预训练能⼒
 </details>
 
 <details>
@@ -547,7 +591,11 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 <details>
   <summary><strong>Stable Diffusion是怎么训练的？</strong></summary>
-  "从训练集中选取一张加噪过的图片和噪声强度输入unet，让unet预测噪声图计算和真正的噪声图之间的误差通过反向传播更新unet的参数"
+	从训练集中选取一张加噪过的图片和噪声强度
+	输入unet，让unet预测噪声图
+	计算和真正的噪声图之间的误差
+	通过反向传播更新unet的参数
+	
 </details>
 
 <details>
@@ -557,12 +605,17 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 <details>
   <summary><strong>介绍一下SD，Dall-E2两者的异同？</strong></summary>
-  "Dalle2通过自回归的方式逐个预测像素点，最终生成符合描述的图像。SD加入了Latent-Space（大幅降低特征维度），以及交叉注意力机制+Unet的步骤，更精细更可控"
+Dalle2通过自回归的方式逐个预测像素点，最终生成符合描述的图像。
+
+SD加⼊了Latent-Space（⼤幅降低特征维度），以及交叉注意⼒机制+Unet的步骤，更精细更可控
 </details>
 
 <details>
   <summary><strong>介绍一下classifier-free guidance和Classifier Guidance？</strong></summary>
-  "Classifier Guidance的一般流程如下：首先单独预训练一个噪声鲁棒的分类器模型。然后训练一个普通的无条件Diffusion模型。Diffusion模型生成图像的采样过程中,利用预训练好的分类器来提供条件信号。具体来说,就是每个采样步骤都计算分类器的输出,获得条件影响项,加入到Diffusion模型的更新公式中。这样就可以利用分类器的条件信号,实现Diffusion模型在推理阶段条件生成图像的目的。Classifier-Free Guidance 中，生成模型不仅仅学习如何根据给定的条件生成数据，而且还学习如何在没有任何条件输入的情况下生成数据。换句话说，模型既能进行条件生成，也能进行无条件生成。CFG的训练过程其实就是对提供的条件输入做随机的dropout，这样就可以得到一个无条件和条件提示的两个输出，然后学习二者之间的方向差指导采样过程。在生成过程中，Classifier-Free Guidance 允许我们在没有显式使用分类器或判别器的情况下调节条件生成的强度。这是通过“调节”（或“混合”）条件生成和无条件生成的输出来实现的，以此来控制生成内容的相关性和多样性 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond) guidance scale是一个放缩系数，越大，生成的结果越倾向于输入条件，多样性会下降。 越小，多样性越大。"
+Classifier Guidance的一般流程如下：首先单独预训练一个噪声鲁棒的分类器模型。然后训练一个普通的无条件Diffusion模型。Diffusion模型生成图像的采样过程中,利 用预训练好的分类器来提供条件信号。具体来说,就是每个采样步骤都计算分类器的输 出,获得条件影响项,加入到Diffusion模型的更新公式中。这样就可以利用分类器的条 件信号,实现Diffusion模型在推理阶段条件生成图像的目的。
+	
+Classifier-Free Guidance 中，⽣成模型不仅仅学习如何根据给定的条件⽣成数据，⽽且还学习如何在没有任何条件输⼊的情况下⽣成数据。换句话说，模型既能进⾏条件⽣成，也能进⾏⽆条件⽣成。CFG的训练过程其实就是对提供的条件输入做随机的dropout，这样就可以得到一个无条件和条件提示的两个输出，然后学习二者之间的方向差指导采样过程。在⽣成过程中，Classifier-Free Guidance 允许我们在没有显式使⽤分类器或判别器的情况下调节条件⽣成的强度。这是通过“调节”（或“混合”）条件⽣成和⽆条件⽣成的输出来实现的，以此来控制⽣成内容的相关性和多样性 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)    
+guidance scale是一个放缩系数，越大，生成的结果越倾向于输入条件，多样性会下降。 越小，多样性越大。
 </details>
 
 <details>
@@ -581,7 +634,10 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 <details>
   <summary><strong>Stable Diffusion核心模块有哪些？</strong></summary>
-  "VAE：将图像特征/文本特征，映射到Latent Space。LDM相关：Diffusion Model +Unet，去噪声核心步骤Conditioning：作用于Unet的 Cross-Attention位置，实现对输出结果的控制"
+	VAE：将图像特征/⽂本特征，映射到Latent Space。
+	LDM相关：Diffusion Model +Unet，去噪声核⼼步骤
+	Conditioning：作⽤于Unet的 Cross-Attention位置，实现对输出结果的控制
+
 </details>
 
 <details>
@@ -592,32 +648,40 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 1.2.7 SDXL篇：
 <details>
   <summary><strong>SDXL的核心优化？</strong></summary>
-  "接入级联的refiner模型+微调网络结构，大幅度提升生成质量。多样化的训练策略，大幅提升基础模型表达能力"
+	接⼊级联的refiner模型+微调⽹络结构，⼤幅度提升⽣成质量。
+	多样化的训练策略，⼤幅提升基础模型表达能⼒
 </details>
 
 <details>
   <summary><strong>SDXL的训练策略？</strong></summary>
-  "图像尺寸条件化：把图像的尺寸编码后作为信息输入到模型中。裁剪参数化训练：裁剪坐标也和尺寸一样送入模型中。多尺度训练：多尺度+分桶噪声偏置：针对冷门色域，加入初始化噪声偏置"
+
+图像尺⼨条件化：把图像的尺⼨编码后作为信息输⼊到模型中。
+裁剪参数化训练：裁剪坐标也和尺⼨⼀样送⼊模型中。
+多尺度训练：多尺度+分桶
+噪声偏置：针对冷⻔⾊域，加⼊初始化噪声偏置
 </details>
 
 1.2.8 Diffusion模型微调篇：
 - Lora：
 
-  "核心解读关键词：低秩展开，即插即用通过矩阵低秩展开，使用“外接”低秩展开后的网络对原模型进行更新"
+	核⼼解读关键词：低秩展开，即插即⽤
+	通过矩阵低秩展开，使⽤“外接”低秩展开后的⽹络对原模型进⾏更新
 
 - Lora有没有什么优化方案？
 
-  "Locon/loha，分别进行细节质量和速度存储空间的优化"
+	Locon/loha，分别进⾏细节质量和速度存储空间的优化
 
 - DreamBooth：
 
-  "核心解读关键词：正则化微调整个网络，训练数据混合因为使用正则化，只在预训练网络上微调某类特定的case。所以速度反而比Lora快得多"
+	核⼼解读关键词：正则化微调整个⽹络，训练数据混合
+	因为使⽤正则化，只在预训练⽹络上微调某类特定的case。 所以速度反⽽⽐Lora快得多
 
 1.2.9 Textual Inversion（知识点）：
 
-- 关键词：文本embedding，Transformer
-- 核心总结：
-  "通过对Embedding层的特殊编码，实现通过不同输入文本，来影响模型最终的生成结果。影响的是Embedding的部分"
+- 关键词：⽂本embedding，Transformer
+- 核⼼总结：通过对Embedding层的特殊编码，实现通过不同输⼊⽂本，来影响模型最终的⽣成结果。影响的是Embedding的部分
+- 首先需要定义一个在现有模型中没有的关键词，新的关键词会和其他的关键词一样，生成Tokenizer(用不同的数字表示)；然后将其转换为embedding；text transformer会映射出对于新给的关键词最好的embedding向量。不用改变模型，可以看作在模型中寻找新的表征来表示新的关键字
+
 
 1.2.10 Lora/Dreambooth/Textual Inversion，核心差异点：
 - Lora：
@@ -633,7 +697,8 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 <details>
   <summary><strong>介绍一下ControlNet的核心原理？</strong></summary>
-  "复制原生Unet一样的模型结构，前半部分encoder训练，后半部分用Zero Convolution 承接，decoder部分接入到模型Unet的网络层中'Zero Convolution'即零卷积：是带有零初始化权重和偏差的1×1卷积。在进行自己的模型训练开始之前，所有零卷积输出都是零，此时模型仍然是原始的Stable Diffusion Model"
+	复制原⽣Unet⼀样的模型结构，前半部分encoder训练，后半部分⽤Zero Convolution 承接，decoder部分接⼊到模型Unet的⽹络层中
+	“Zero Convolution”即零卷积：是带有零初始化权重和偏差的1×1卷积。在进⾏⾃⼰的模型训练开始之前，所有零卷积输出都是零，此时模型仍然是原始的Stable Diffusion Model
 </details>
 
 <details>
@@ -645,3 +710,103 @@ maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
   <summary><strong>IP-Adapter?</strong></summary>
   IP-Adapter 通过带有解耦交叉注意力的适配模块，将文本特征的 Cross-Attention 和图像特征的 Cross-Attention 区分开来，在 Unet 的模块中新增了一路 Cross-Attention 模块，用于引入图像特征。
 </details>
+
+三、多模态大模型
+
+事实上，目前很少有能称为“大模型”的多模态模型。但依照现在的发展规模和速度，很快就会涌现出一大批参数量上逼近大模型门槛的模型，这也是添加其到“大模型面试准备”的一个重要原因。
+
+这里整理一系列与“多模态大模型”主题相关的面经资料和相关预备知识
+
+### $基本预备知识$：
+
+<details>
+  <summary><strong>CLIP模型</strong></summary> 
+（1）基本思想：文本和图像在特征域进行对齐
+
+（2）模型结构：
+- 文本编码器（BERT）
+-  图像编码器（ViT）
+-  对上面两个encoder提取的特征计算余弦距离对齐
+
+（3）训练目标：info-nce-loss (对比学习MoCo的对抗基因)
+
+（4）训练数据集：400million的图文对齐图片数据
+</details>
+
+<details>
+  <summary><strong>BLIP模型</strong></summary>
+（1）基本思想：深度嵌入联合编码器，同时使三个视觉语言模型上联合表现最佳：图像对文本对比学习、图像文本互翻译联合条件生成训练。
+
+（2）模型结构：Multimodal mixture of Encoder-Decoder
+- 多模态交叉编码器（ViT）
+- 串联文本编码器（BERT）
+- 串联Image-grounded text encoder: 在self-attention和FFN中间加一层cross-attention
+- 多模态Image-grounded text decoder: 用casual self-attention层（预测下一个token）代替了双向自注意力层（建立当前输入token的表达）
+
+（3）训练目标：
+- ITC loss（视图距离，生成图像和文本编码器距离）；
+- ITM loss（视图距离，生成图像和文本编码器）； 
+- LM loss（语言生成，优化图像和文本编码器在语言建模应用可互式交互生成的效果。
+这三种损失（loss）是在多模态（图文）模型中常用的，用以优化图文对齐和生成性能。以下是对这三种损失的详细介绍：
+
+1. **ITC loss (Image-Text Contrastive loss)**
+   - **目的**：优化图文对齐的编码器，改善图像和文本之间的语义匹配。
+   - **工作原理**：这种损失函数通常通过对比学习实现，即通过最大化匹配图文对的相似性，同时最小化不匹配对的相似性。实现方式通常涉及计算图像和文本嵌入之间的距离或相似度，并使用如负对数似然这样的方法进行优化。
+   - **应用**：这种方法在提升图文嵌入在同一向量空间中的表现上非常有效，有助于后续的检索和分类任务。
+
+2. **ITM loss (Image-Text Matching loss)**
+   - **目的**：优化图文匹配能力，用于更细致地判定图像内容与文本描述之间的匹配程度。
+   - **工作原理**：这种损失通常用于二分类任务，即判断给定的图像和文本是否匹配。模型需要学习区分哪些图文组合是真实相关的，哪些是随机组合的。这通常通过一个有监督的学习过程来完成，其中正例是实际匹配的图文对，而负例是不匹配的图文对。
+   - **应用**：这有助于模型在更复杂的多模态场景下进行准确的内容理解和生成，常用于自动图文生成、图文同步解读等应用。
+
+3. **LM loss (Language Modeling loss)**
+   - **目的**：主要用于语言生成任务，尤其是在图文交互生成中的应用，通过优化模型的语言生成能力来增强交互性。
+   - **工作原理**：这种损失函数通常用于评估模型生成的文本与实际文本之间的一致性。在图文模型中，可以使用图像作为上下文来生成描述文本，并通过计算生成文本和真实描述之间的交叉熵损失来优化模型。
+   - **应用**：这种方法使得模型不仅能够理解图像内容，还能基于理解生成准确、自然的语言描述，常用于图像描述、自动文案生成等任务。
+
+（4）训练数据集：
+- COCO
+- Visual Genome
+- 网络数据：Conceptual Captions 3M,  Conceptual 12M（视图数据），SBU Captions
+- 另外进行一个额外的拍摄照片文本对齐的web模型数据 LAION (115M 图片)
+</details>
+
+<details>
+  <summary><strong>BLIP2模型</strong></summary>
+（1）基本思想：两个阶段，通过利用预训练好的视觉模型和语言模型来提升多模态效果和降低训练成本。
+
+（2）模型结构：
+	BLIP-2 由预训练的Image Encoder，预训练的Large Language Model，和一个可学习的 Q-Former 组成。
+-  Image Encoder：从输入图片中提取视觉特征，尝试了两种网络结构，CLIP 训练的 ViT-L/14和EVA-CLIP训练的 ViT-g/14（去掉了最后一层）。
+- Large Language Model：大语言模型进行文本生成，尝试了接入decoder-based LLM 和 encoder-decoder-based LLM两种结构。
+- Q-Former：弥补视觉和语言两种模态的modality gap，可以理解为固定图像编码器和固定LLM之间的**信息枢纽**，选取最有用的视觉特征给LLM来生成文本。
+
+（3） 训练目标：
+- ITC loss（偏理解）：图文对比学习，对其图文特征空间；
+- ITG loss（偏生成）：确定输入图像生成文本描述，迫使Query提取包含文本信息的特征；
+- ITM loss（偏理解）：图文匹配二分类，图文表示的细粒度对齐。
+
+（4）训练数据
+- BLIP运用的数据集
+- 利用提出的CapFilt方法从网络图中提取匹配的图文对，然后对文字描述内容进行filter，得到有利于训练的caption
+</details>
+
+4. BEIT方法
+
+
+### $常见面经题目$
+
+1. CLIP和BEIT V3的区别;
+2. BEIT V3除了BERT外还有别的特殊的设计吗;
+3. V3和V2的 embbeding有什么不同;
+4. VIT的patch怎么做的;
+5. 224* 224 * 3的图像做成14 * 14的patch的话，最后sequence的长度是多少;
+6. Transformer里的position encoding怎么做的;
+7. 相对位置编码和绝对位置编码有什么区别吗;
+8. 具体实现相对位置编码该怎么做;
+9. CV领域有哪些其他的预训练的模型;
+10. 什么是对比学习;
+11. coco,simclr等对比学习方法是怎么具体做的；
+
+
+
