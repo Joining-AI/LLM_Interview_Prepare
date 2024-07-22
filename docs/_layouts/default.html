@@ -15,7 +15,9 @@ layout: default
   <div class="container-fluid">
     <div class="row">
       <aside class="col-md-3 sidebar bg-light">
-        <h2 class="text-center">{{ site.title }}</h2>
+        <h2 class="text-center my-4">{{ site.title }}</h2>
+        <p class="description text-center">{{ site.description }}</p>
+        <p class="description text-center">Maintained by SJTU Joining AI, attribute to Malotru</p>
         <nav class="nav flex-column">
           {% for link in site.nav_links %}
             <a class="nav-link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
