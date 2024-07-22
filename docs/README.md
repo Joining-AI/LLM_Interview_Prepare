@@ -39,30 +39,26 @@
   }
 </style>
 
-# LLM_Interview_Prepare
+# LLM Interview Prepare
 
 maintained by [SJTU Joining AI](https://sjtujoining.com) attribute to Malotru
 
 本仓库秉承开源精神，维护了关于大模型面试中常见面试试题和面试经验的整理，同时维护大模型相关的工作与求职机会。
 
-# 零 写在前面
+## 零 写在前面
 
-## [AI面试与职业机会](Part0/Part0-0.html)
+[AI面试与职业机会](Part0/Part0-0.html)
 
-## [markdown文档格式模板](Part0/Part0-1.html)
+[markdown文档格式模板](Part0/Part0-1.html)
 
-# 第一部分 基础知识
+## 第一部分 基础知识
 
-## [什么是大模型](Part1/Part1-1.html)
+[什么是大模型](Part1/Part1-1.html)
 
-## [大模型类别](Part1/Part1-2.html)
+[大模型类别](Part1/Part1-2.html)
 
 
-# 第二部分：大模型一般知识点
-（主要内容借鉴于多个网站的面经资料）
-
-## LLM面经
-
+## 第二部分：LLM面经
 
 ### 2.1 大模型（LLMs）基础面
 
