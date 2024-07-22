@@ -18,7 +18,6 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .sidebar h2 {
