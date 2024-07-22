@@ -13,23 +13,25 @@ layout: default
 </head>
 <body>
   <div class="container-fluid">
-    <aside class="sidebar bg-light">
-      <h2 class="text-center my-4">{{ site.title }}</h2>
-      <p class="description text-center">{{ site.description }}</p>
-      <p class="description text-center">Maintained by SJTU Joining AI, attribute to Malotru</p>
-      <!-- GitHub Star Button -->
-      <div class="text-center my-4">
-        <a class="github-button" href="https://github.com/Joining-AI/LLM_Interview_Prepare" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Joining-AI/LLM_Interview_Prepare on GitHub">Star</a>
-      </div>
-      <nav class="nav flex-column mb-4 mt-auto">
-        {% for link in site.nav_links %}
-          <a class="nav-link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
-        {% endfor %}
-      </nav>
-    </aside>
-    <main class="main-content">
-      {{ content }}
-    </main>
+    <div class="row">
+      <aside class="col-md-3 sidebar bg-light">
+        <h2 class="text-center my-4">{{ site.title }}</h2>
+        <p class="description text-center">{{ site.description }}</p>
+        <p class="description text-center">Maintained by SJTU Joining AI, attribute to Malotru</p>
+        <!-- GitHub Star Button -->
+        <div class="text-center my-4">
+          <a class="github-button" href="https://github.com/Joining-AI/LLM_Interview_Prepare" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Joining-AI/LLM_Interview_Prepare on GitHub">Star</a>
+        </div>
+        <nav class="nav flex-column mb-4 mt-auto">
+          {% for link in site.nav_links %}
+            <a class="nav-link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+          {% endfor %}
+        </nav>
+      </aside>
+      <main class="col-md-9 ml-sm-auto col-lg-9 main-content">
+        {{ content }}
+      </main>
+    </div>
   </div>
 
   <footer class="footer mt-auto py-3 bg-light">
