@@ -11,10 +11,14 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
+  width: 18rem;
   z-index: 1000;
   padding: 20px 15px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebar h2 {
