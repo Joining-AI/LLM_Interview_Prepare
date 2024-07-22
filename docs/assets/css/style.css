@@ -2,17 +2,11 @@
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: 100vh;
-  margin: 0;
 }
 
-.container-fluid {
-  display: flex;
-  flex: 1;
-}
-
-.sidebar {
+.fixed-sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -28,23 +22,23 @@ body {
   height: 100vh; /* Ensure the sidebar height is equal to the viewport height */
 }
 
-.sidebar h2 {
+.fixed-sidebar h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.sidebar .description {
+.fixed-sidebar .description {
   font-size: 0.9rem;
   margin-bottom: 1rem;
   color: #555;
 }
 
-.sidebar .nav-link {
+.fixed-sidebar .nav-link {
   color: #333;
   font-weight: 500;
 }
 
-.sidebar .nav-link:hover {
+.fixed-sidebar .nav-link:hover {
   color: #007bff;
 }
 
@@ -52,7 +46,6 @@ body {
   margin-left: 18rem; /* Ensure enough space for the sidebar */
   padding: 20px;
   flex-grow: 1; /* Allow main content to grow and take up remaining space */
-  overflow-y: auto; /* Enable scrolling for the main content */
 }
 
 .footer {
