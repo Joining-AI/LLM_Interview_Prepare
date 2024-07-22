@@ -2,8 +2,9 @@
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100vh;
+  margin: 0;
 }
 
 .sidebar {
@@ -46,6 +47,7 @@ body {
   margin-left: 18rem; /* Ensure enough space for the sidebar */
   padding: 20px;
   flex-grow: 1; /* Allow main content to grow and take up remaining space */
+  overflow-y: auto; /* Enable scrolling for the main content */
 }
 
 .footer {
