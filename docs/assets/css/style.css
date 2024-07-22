@@ -7,6 +7,11 @@ body {
   margin: 0;
 }
 
+.container-fluid {
+  display: flex;
+  flex: 1;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
