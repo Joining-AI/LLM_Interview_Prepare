@@ -10,7 +10,7 @@ layout: default
   {% include mathjax.html %}
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <h1>{{ site.title }}</h1>
     <nav>
       <ul>
@@ -21,7 +21,9 @@ layout: default
     </nav>
   </header>
   <main>
-    {{ content }}
+    <div class="content-container">
+      {{ content }}
+    </div>
   </main>
   <footer>
     <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
