@@ -1,26 +1,22 @@
 /* /assets/css/style.css */
 body {
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
   }
   
   .site-header {
-    width: 100%;
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     z-index: 1000;
-    text-align: center;
-    padding: 20px 0;
   }
   
-  .content-container {
+  .main {
     flex: 1;
-    margin-top: 100px; /* Ensure top margin is greater than the height of the header */
+    margin-top: 120px; /* Ensure top margin is greater than the height of the header */
     padding: 20px 0;
   }
   
