@@ -18,11 +18,15 @@ layout: default
         <h2 class="text-center my-4">{{ site.title }}</h2>
         <p class="description text-center">{{ site.description }}</p>
         <p class="description text-center">Maintained by SJTU Joining AI, attribute to Malotru</p>
-        <nav class="nav flex-column">
+        <nav class="nav flex-column mb-4">
           {% for link in site.nav_links %}
             <a class="nav-link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
           {% endfor %}
         </nav>
+        <!-- GitHub Star Button -->
+        <div class="text-center">
+          <a class="github-button" href="https://github.com/Joining-AI/LLM_Interview_Prepare" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Joining-AI/LLM_Interview_Prepare on GitHub">Star</a>
+        </div>
       </aside>
       <main class="col-md-9 main-content">
         {{ content }}
@@ -39,5 +43,6 @@ layout: default
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
