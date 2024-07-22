@@ -15,7 +15,7 @@ body {
   z-index: 1000;
   padding: 20px 15px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  overflow-y: auto; /* Allow content to scroll within the sidebar */
   display: flex;
   flex-direction: column;
   background-color: #f8f9fa; /* Add background color to make it more distinct */
