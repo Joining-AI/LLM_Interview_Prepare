@@ -10,8 +10,8 @@ theme: jekyll-theme-minimal
 
 # Navigation links
 nav_links:
-  - title: "Home"
-    url: "https://sjtujoining.com/"
+  - title: "Github Home"
+    url: "https://github.com/Joining-AI/LLM_Interview_Prepare"
   - title: "Synthetic Data"
     url: "https://joining-ai.github.io/SyntheticData/"
   - title: "Agent"
