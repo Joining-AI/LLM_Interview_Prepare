@@ -19,6 +19,7 @@ body {
   flex-direction: column;
   background-color: #f8f9fa; /* Add background color to make it more distinct */
   overflow: hidden; /* Prevent content from scrolling */
+  height: 100vh; /* Ensure the sidebar height is equal to the viewport height */
 }
 
 .sidebar h2 {
