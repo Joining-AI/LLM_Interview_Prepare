@@ -10,4 +10,9 @@ theme: jekyll-theme-minimal
 # Navigation links
 nav_links:
   - title: "Home"
-    url: "/"
+    url: "https://sjtujoining.com/"
+  - title: "Synthetic Data"
+    url: "https://joining-ai.github.io/SyntheticData/"
+
+  - title: "Agent"
+    url: "https://github.com/Joining-AI/JoinQwen"
