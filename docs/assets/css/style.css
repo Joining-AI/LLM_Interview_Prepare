@@ -18,6 +18,7 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  background-color: #f8f9fa; /* Add background color to make it more distinct */
 }
 
 .sidebar h2 {
@@ -43,6 +44,7 @@ body {
 .main-content {
   margin-left: 18rem; /* Ensure enough space for the sidebar */
   padding: 20px;
+  flex-grow: 1; /* Allow main content to grow and take up remaining space */
 }
 
 .footer {
