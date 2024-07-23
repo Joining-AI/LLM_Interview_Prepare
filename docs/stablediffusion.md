@@ -39,8 +39,8 @@
   }
 </style>
 
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
-### 1.1 写在前面
+
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)### 1.1 写在前面
 
 <details>
   <summary class="bold-summary">为什么要为Diffusion单独开辟一个部分</summary>
@@ -296,4 +296,5 @@ guidance scale是一个放缩系数，越大，生成的结果越倾向于输入
   IP-Adapter 通过带有解耦交叉注意力的适配模块，将文本特征的 Cross-Attention 和图像特征的 Cross-Attention 区分开来，在 Unet 的模块中新增了一路 Cross-Attention 模块，用于引入图像特征。
 </details>
 
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
+
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)

@@ -1,3 +1,4 @@
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
 # markdown文档格式模板
 本文档主页的面经格式遵循如下模板：
 
@@ -10,5 +11,4 @@ n.n.n 问题?
 
 n.n.n 问题?
 
-
-[返回](index.md)
+[返回](../index.md)

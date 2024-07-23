@@ -1,3 +1,5 @@
+
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
 ## 什么是大模型：
 "大模型"（Large Model）在人工智能和机器学习领域通常指的是参数数量非常庞大的深度学习模型。这些模型通常具备以下几个特点：
 
@@ -12,4 +14,4 @@
 一般来讲，大模型所直接指代的是自然语言处理的模型，但严格意义上来讲，其正确的名称应为大语言模型，其代表包括：OpenAI 的 GPT 系列、Google 的 BERT、Transformer 模型、DeepMind 的 AlphaFold 等。
 考虑以上定义，一般的参数量较大的模型也可一般归类为“大模型”，一般标准为10B。以这样的衡量标准，包括Stable Diffusion在内的模型（例如，Sd v3 的最大模型参数量已经达到8B规模）已经摸到了所谓“大模型”的门槛，因而也可以被归为此类。
 
-[返回](index.md)
+[返回](../index.md)

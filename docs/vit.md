@@ -39,8 +39,8 @@
   }
 </style>
 
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
-事实上，目前很少有能称为“大模型”的多模态模型。但依照现在的发展规模和速度，很快就会涌现出一大批参数量上逼近大模型门槛的模型，这也是添加其到“大模型面试准备”的一个重要原因。
+
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)事实上，目前很少有能称为“大模型”的多模态模型。但依照现在的发展规模和速度，很快就会涌现出一大批参数量上逼近大模型门槛的模型，这也是添加其到“大模型面试准备”的一个重要原因。
 
 这里整理一系列与“多模态大模型”主题相关的面经资料和相关预备知识
 
@@ -135,4 +135,4 @@
 10. 什么是对比学习;
 11. coco,simclr等对比学习方法是怎么具体做的；
 
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)

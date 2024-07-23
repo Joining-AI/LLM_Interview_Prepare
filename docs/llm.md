@@ -1,5 +1,5 @@
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
 
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
 ### 2.1 大模型 基础面
 
   2.1.1 目前主流的开源模型体系有哪些?
@@ -388,4 +388,4 @@
 
   2.18.8 LLMs 各模型分别用了 哪种 Layer normalization?
 
-[![GitHub stars](https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)

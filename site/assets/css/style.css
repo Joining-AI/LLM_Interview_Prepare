@@ -1,0 +1,58 @@
+
+/* /assets/css/style.css */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 18rem;
+  z-index: 1000;
+  padding: 20px 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa; /* Add background color to make it more distinct */
+  overflow: hidden; /* Prevent content from scrolling */
+  height: 100vh; /* Ensure the sidebar height is equal to the viewport height */
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar .description {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.sidebar .nav-link {
+  color: #333;
+  font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+  color: #007bff;
+}
+
+.main-content {
+  margin-left: 18rem; /* Ensure enough space for the sidebar */
+  padding: 20px;
+  flex-grow: 1; /* Allow main content to grow and take up remaining space */
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f8f9fa;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
