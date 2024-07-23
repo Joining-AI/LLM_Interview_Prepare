@@ -1,0 +1,1531 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../llm/">
+      
+      
+        <link rel="next" href="../vit/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>StableDiffusion - AIDIY Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.76a95c52.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AIDIY Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              StableDiffusion
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../llm/" class="md-tabs__link">
+        
+  
+    
+  
+  LLM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  StableDiffusion
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../vit/" class="md-tabs__link">
+        
+  
+    
+  
+  ViT
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AIDIY Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    StableDiffusion
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    StableDiffusion
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 写在前面
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(零 写在前面\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(第一部分 基础知识\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(第二部分：LLM面经\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(第二部分：LLM面经\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.1 大模型 基础面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.2 大模型 进阶面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.3 大模型 微调面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.5 大模型 langchain面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.6 基于LLM+向量库的文档对话 面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-peft" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.7 大模型 参数高效微调(PEFT) 面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.8 大模型 推理面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.9 大模型 评测面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.10 大模型 强化学习面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.11 大模型 软硬件配置面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.12 大模型 训练集面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.13 Token及模型参数准备篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-alibi-attention-with-linear-biases" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.14 ALiBi (Attention with Linear Biases)篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.15 LLMs 位置编码篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.16 长度外推问题篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#217-llms-tokenizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.17 LLMs Tokenizer 篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#218-layer-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.18 Layer Normalization 篇\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(Diffusion 面经\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(Diffusion 面经\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(1.1 写在前面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 各类 Diffusion 模型原理篇
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-diffusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(1.2 各类Diffusion模型原理篇\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 写在前面
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(零 写在前面\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(第一部分 基础知识\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(第二部分：LLM面经\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(第二部分：LLM面经\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.1 大模型 基础面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.2 大模型 进阶面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.3 大模型 微调面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.5 大模型 langchain面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.6 基于LLM+向量库的文档对话 面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-peft" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.7 大模型 参数高效微调(PEFT) 面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.8 大模型 推理面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.9 大模型 评测面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.10 大模型 强化学习面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.11 大模型 软硬件配置面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.12 大模型 训练集面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.13 Token及模型参数准备篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-alibi-attention-with-linear-biases" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.14 ALiBi (Attention with Linear Biases)篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.15 LLMs 位置编码篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.16 长度外推问题篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#217-llms-tokenizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.17 LLMs Tokenizer 篇\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#218-layer-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(2.18 Layer Normalization 篇\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(Diffusion 面经\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(Diffusion 面经\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(1.1 写在前面\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 各类 Diffusion 模型原理篇
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-diffusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(1.2 各类Diffusion模型原理篇\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>StableDiffusion</h1>
+
+<style>
+  .label {
+      background-color: #80EB00;
+      color: black;
+      padding: 3px;
+      border-radius: 12px; /* 使方框为圆角 */
+  }
+  details summary {
+    list-style-type: disc;  /* 添加圆点序号 */
+    margin-left: 20px;      /* 增加与圆点的间距 */
+    font-weight: normal;    /* 确保文本不加粗 */
+    cursor: pointer;        /* 鼠标悬浮时显示为可点击状态 */
+  }
+
+  details summary strong {
+    font-weight: normal;    /* 确保 strong 标签中的文本不加粗 */
+  }
+
+  /* 鼠标悬浮时显示淡蓝色底色 */
+  details summary:hover {
+    background-color: rgb(192, 229, 241);
+  }
+
+  /* 用于加粗的类 */
+  .bold-summary {
+    font-weight: bold;
+  }
+
+  /* 展开后显示更淡的蓝色底色 */
+  details[open] summary {
+    background-color: rgb(240, 248, 255);
+  }
+
+  /* 展开的内容显示更淡的蓝色底色 */
+  details[open] {
+    background-color: rgb(240, 248, 255);
+    padding: 10px; /* 增加内边距以提高可读性 */
+    border-radius: 5px; /* 使边角稍微圆润 */
+  }
+</style>
+
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:docs/stablediffusion.md
+<a href="https://github.com/Joining-AI/LLM_Interview_Prepare"><img alt="GitHub stars" src="https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social" /></a></p>
+<h3 id="11">1.1 写在前面<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>=======</p>
+<h2 id="_1"><span class="arithmatex">\(零 写在前面\)</span><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="Part0/Part0-0.html">AI面试与职业机会</a></p>
+<p><a href="Part0/Part0-1.html">markdown文档格式模板</a></p>
+<h2 id="_2"><span class="arithmatex">\(第一部分 基础知识\)</span><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a href="Part1/Part1-1.html">什么是大模型</a></p>
+<p><a href="Part1/Part1-2.html">大模型类别</a></p>
+<h2 id="llm"><span class="arithmatex">\(第二部分：LLM面经\)</span><a class="headerlink" href="#llm" title="Permanent link">&para;</a></h2>
+<h3 id="21"><span class="arithmatex">\(2.1 大模型 基础面\)</span><a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>2.1.1 目前主流的开源模型体系有哪些?</p>
+<p>2.1.2 prefix LM 和 causal LM 区别是什么?</p>
+<p>2.1.3 涌现能力是啥原因?</p>
+<p>2.1.4 大模型LLM的架构介绍?</p>
+<h3 id="22"><span class="arithmatex">\(2.2 大模型 进阶面\)</span><a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>2.2.1 llama 输入句子长度理论上可以无限长吗?</p>
+<p>2.2.2 什么是 LLMs 复读机问题?</p>
+<p>2.2.3 为什么会出现 LLMs 复读机问题?</p>
+<p>2.2.4 如何缓解 LLMs 复读机问题?</p>
+<p>2.2.5 什么情况用Bert模型，什么情况用LLaMA、ChatGLM类大模型，咋选?</p>
+<p>2.2.6 各个专业领域是否需要各自的大模型来服务?</p>
+<p>2.2.7 如何让大模型处理更长的文本?</p>
+<h3 id="23"><span class="arithmatex">\(2.3 大模型 微调面\)</span><a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>2.3.1 如果想要在某个模型基础上做全参数微调，究竟需要多少显存?</p>
+<p>2.3.2 为什么SFT之后感觉LLM傻了?</p>
+<p>2.3.3 SFT 指令微调数据如何构建?</p>
+<p>2.3.4 领域模型Continue PreTrain 数据选取?</p>
+<p>2.3.5 领域数据训练后，通用能力往往会有所下降，如何缓解模型遗忘通用能力?</p>
+<p>2.3.6 领域模型Continue PreTrain ，如何让模型在预训练过程中就学习到更多的知识?</p>
+<p>2.3.7 进行SFT操作的时候，基座模型选用Chat还是Base?</p>
+<p>2.3.8 领域模型微调 指令&amp;数据输入格式 要求?</p>
+<p>2.3.9 领域模型微调 领域评测集 构建?</p>
+<p>2.3.10 领域模型词表扩增是不是有必要的?</p>
+<p>2.3.11 如何训练自己的大模型?</p>
+<p>2.3.12 训练中文大模型有啥经验?</p>
+<p>2.3.13 指令微调的好处?</p>
+<p>2.3.14 预训练和微调哪个阶段注入知识的?</p>
+<p>2.3.15 想让模型学习某个领域或行业的知识，是应该预训练还是应该微调?</p>
+<p>2.3.16 多轮对话任务如何微调模型?</p>
+<p>2.3.17 微调后的模型出现能力劣化，灾难性遗忘是怎么回事?</p>
+<p>2.3.18 微调模型需要多大显存?</p>
+<p>2.3.19 大模型LLM进行SFT操作的时候在学习什么?</p>
+<p>2.3.20 预训练和SFT操作有什么不同?</p>
+<p>2.3.21 样本量规模增大，训练出现OOM错误?</p>
+<p>2.3.22 大模型LLM进行SFT 如何对样本进行优化?</p>
+<p>2.3.23 模型参数迭代实验?</p>
+<h3 id="25-langchain"><span class="arithmatex">\(2.5 大模型 langchain面\)</span><a class="headerlink" href="#25-langchain" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>概念部分</strong></li>
+</ul>
+<p>2.5.1 什么是LangChain</p>
+<p>2.5.2 LangChain 包含哪些核心概念?</p>
+<p>2.5.3 什么是LangChain Agent?</p>
+<p>2.5.4 如何使用LangChain?</p>
+<p>2.5.5 LangChain 支持哪些功能?</p>
+<p>2.5.6 什么是LangChain model?</p>
+<p>2.5.7 LangChain 包含哪些特点?</p>
+<p>2.5.8 LangChain 如何使用?</p>
+<p>2.5.9 LangChain 存在哪些问题及方法方案?</p>
+<p>2.5.10 LangChain 替代方案?</p>
+<ul>
+<li><strong>基础技术部分</strong></li>
+</ul>
+<p>2.5.11 LangChain 中 Components and Chains 是什么?</p>
+<p>2.5.12 LangChain 中 Prompt Templates and Values 是什么?</p>
+<p>2.5.13 LangChain 中 Example Selectors 是什么?</p>
+<p>2.5.14 LangChain 中 Output Parsers 是什么?</p>
+<p>2.5.15 LangChain 中 Indexes and Retrievers 是什么?</p>
+<p>2.5.16 LangChain 中 Chat Message History 是什么?</p>
+<p>2.5.17 LangChain 中 Agents and Toolkits 是什么?</p>
+<p>2.5.18 LangChain 如何调用LLMs生成回复?</p>
+<p>2.5.19 LangChain 如何修改提示模板?</p>
+<p>2.5.20 LangChain 如何链接多个组件处理一个特定的下游任务?</p>
+<p>2.5.21 LangChain 如何Embedding &amp; vector store?</p>
+<p>2.5.22 LangChain 低效的令牌使用问题</p>
+<p>2.5.23 LangChain 文档的问题</p>
+<p>2.5.24 LangChain 太多概念容易混淆，过多的“辅助”函数问题</p>
+<p>2.5.25 LangChain 行为不一致并且隐藏细节问题</p>
+<p>2.5.26 LangChain 缺乏标准的可互操作数据类型问题</p>
+<h3 id="26-llm"><span class="arithmatex">\(2.6 基于LLM+向量库的文档对话 面\)</span><a class="headerlink" href="#26-llm" title="Permanent link">&para;</a></h3>
+<p>2.6.1 LLMs 存在模型幻觉问题，请问如何处理?</p>
+<p>2.6.2 基于LLM+向量库的文档对话思路是怎么样?</p>
+<p>2.6.3 基于LLM+向量库的文档对话核心技术是什么?</p>
+<p>2.6.4 基于LLM+向量库的文档对话 prompt 模板如何构建?</p>
+<h3 id="27-peft"><span class="arithmatex">\(2.7 大模型 参数高效微调(PEFT) 面\)</span><a class="headerlink" href="#27-peft" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LoRA篇</strong></li>
+</ul>
+<p>2.7.1 什么是 LoRA?</p>
+<p>2.7.2 LoRA 的思路是什么?</p>
+<p>2.7.3 LoRA 的特点是什么?</p>
+<ul>
+<li><strong>QLoRA篇</strong></li>
+</ul>
+<p>2.7.4 QLoRA 的思路是怎么样的?</p>
+<p>2.7.5 QLoRA 的特点是什么?</p>
+<ul>
+<li><strong>AdaLoRA篇</strong></li>
+</ul>
+<p>2.7.6 AdaLoRA 的思路是怎么样的?</p>
+<p>2.7.7 LoRA权重是否可以合入原模型?</p>
+<p>2.7.8 ChatGLM-6B LoRA后的权重多大?</p>
+<p>2.7.9 LoRA 微调优点是什么?</p>
+<p>2.7.10 LoRA微调方法为啥能加速训练?</p>
+<p>2.7.11 如何在已有LoRA模型上继续训练?</p>
+<ul>
+<li><strong>提示学习（Prompting）</strong></li>
+</ul>
+<p>2.7.12 为什么需要 P-tuning?</p>
+<p>2.7.13 P-tuning 思路是什么?</p>
+<p>2.7.14 P-tuning 优点是什么?</p>
+<p>2.7.15 P-tuning 缺点是什么?</p>
+<p>2.7.16 为什么需要 指示微调（Prompt-tuning）?</p>
+<p>2.7.17 指示微调（Prompt-tuning）思路是什么?</p>
+<p>2.7.18 指示微调（Prompt-tuning）优点是什么?</p>
+<p>2.7.19 指示微调（Prompt-tuning）缺点是什么?</p>
+<p>2.7.20 指示微调（Prompt-tuning）与 Prefix-tuning 区别 是什么?</p>
+<p>2.7.21 指示微调（Prompt-tuning）与 fine-tuning 区别 是什么?</p>
+<p>2.7.22 提示学习（Prompting）有哪些方法，能不能稍微介绍一下它们?</p>
+<ul>
+<li><strong>前缀微调（Prefix-tuning）篇</strong></li>
+</ul>
+<p>2.7.23 为什么需要 前缀微调（Prefix-tuning）?</p>
+<p>2.7.24 前缀微调（Prefix-tuning）思路是什么?</p>
+<p>2.7.25 前缀微调（Prefix-tuning）的优点是什么?</p>
+<p>2.7.26 前缀微调（Prefix-tuning）的缺点是什么?</p>
+<ul>
+<li><strong>适配器微调（Adapter-tuning）篇</strong></li>
+</ul>
+<p>2.7.27 为什么 需要 适配器微调（Adapter-tuning）?</p>
+<p>2.7.28 适配器微调（Adapter-tuning）思路?</p>
+<p>2.7.29 适配器微调（Adapter-tuning）特点是什么?</p>
+<p>2.7.30 AdapterFusion 思路 是什么?</p>
+<p>2.7.31 AdapterDrop 思路 是什么?</p>
+<p>2.7.32 AdapterDrop 特点 是什么?</p>
+<p>2.7.33 MAM Adapter 思路 是什么?</p>
+<p>2.7.34 MAM Adapter 特点 是什么?</p>
+<h3 id="28"><span class="arithmatex">\(2.8 大模型 推理面\)</span><a class="headerlink" href="#28" title="Permanent link">&para;</a></h3>
+<p>2.8.1 为什么大模型推理时显存涨的那么多还一直占着?</p>
+<p>2.8.2 大模型在gpu和cpu上推理速度如何?</p>
+<p>2.8.3 推理速度上，int8和fp16比起来怎么样?</p>
+<p>2.8.4 大模型有推理能力吗?</p>
+<p>2.8.5 大模型生成时的参数怎么设置?</p>
+<p>2.8.6 有哪些省内存的大语言模型训练/微调/推理方法?</p>
+<p>2.8.7 如何让大模型输出合规化</p>
+<p>2.8.8 应用模式变更</p>
+<h3 id="29"><span class="arithmatex">\(2.9 大模型 评测面\)</span><a class="headerlink" href="#29" title="Permanent link">&para;</a></h3>
+<p>2.9.1 大模型怎么评测?</p>
+<p>2.9.2 大模型的honest原则是如何实现的?</p>
+<p>2.9.3 模型如何判断回答的知识是训练过的已知的知识，怎么训练这种能力?</p>
+<h3 id="210"><span class="arithmatex">\(2.10 大模型 强化学习面\)</span><a class="headerlink" href="#210" title="Permanent link">&para;</a></h3>
+<p>2.10.1 奖励模型需要和基础模型一致吗?</p>
+<p>2.10.2 RLHF 在实践过程中存在哪些不足?</p>
+<p>2.10.3 如何解决 人工产生的偏好数据集成本较高，很难量产问题?</p>
+<p>2.10.4 如何解决三个阶段的训练（SFT-&gt;RM-&gt;PPO）过程较长，更新迭代较慢问题?</p>
+<p>2.10.5 如何解决 PPO 的训练过程同时存在4个模型（2训练，2推理），对计算资源的要求较高问题?</p>
+<h3 id="211"><span class="arithmatex">\(2.11 大模型 软硬件配置面\)</span><a class="headerlink" href="#211" title="Permanent link">&para;</a></h3>
+<p>2.11.1 介绍一下 FFN 块 计算公式?</p>
+<p>2.11.2 介绍一下 GeLU 计算公式?</p>
+<p>2.11.3 介绍一下 Swish 计算公式?</p>
+<p>2.11.4 介绍一下 使用 GLU 线性门控单元的 FFN 块 计算公式?</p>
+<p>2.11.5 介绍一下 使用 GeLU 的 GLU 块 计算公式?</p>
+<p>2.11.6 介绍一下 使用 Swish 的 GLU 块 计算公式?</p>
+<p>2.11.7 各LLMs 都使用哪种激活函数?</p>
+<h3 id="212"><span class="arithmatex">\(2.12 大模型 训练集面\)</span><a class="headerlink" href="#212" title="Permanent link">&para;</a></h3>
+<p>2.12.1 SFT（有监督微调）的数据集格式?</p>
+<p>2.12.2 RM（奖励模型）的数据格式?</p>
+<p>2.12.3 PPO（强化学习）的数据格式?</p>
+<p>2.12.4 找数据集哪里找?</p>
+<p>2.12.5 微调需要多少条数据?</p>
+<p>2.12.6 有哪些大模型的训练集?</p>
+<p>2.12.7 进行领域大模型预训练应用哪些数据集比较好?</p>
+<p>2.12.8 如何给LLM注入领域知识?</p>
+<p>2.12.9 如果想要快速体验各种模型，该怎么办?</p>
+<h3 id="213-token"><span class="arithmatex">\(2.13 Token及模型参数准备篇\)</span><a class="headerlink" href="#213-token" title="Permanent link">&para;</a></h3>
+<p>2.13.1 预训练数据 Token 重复 是否影响 模型性能?</p>
+<p>2.13.2 SFT需要训练Token数?</p>
+<h3 id="214-alibi-attention-with-linear-biases"><span class="arithmatex">\(2.14 ALiBi (Attention with Linear Biases)篇\)</span><a class="headerlink" href="#214-alibi-attention-with-linear-biases" title="Permanent link">&para;</a></h3>
+<p>2.14.1 ALiBi (Attention with Linear Biases) 思路是什么?</p>
+<p>2.14.2 ALiBi (Attention with Linear Biases) 的偏置矩阵是什么?有什么作用?</p>
+<p>2.14.3 ALiBi (Attention with Linear Biases) 有什么优点?</p>
+<p>2.14.4 ALiBi (Attention with Linear Biases) 被哪些 LLMs 应用?</p>
+<h3 id="215-llms"><span class="arithmatex">\(2.15 LLMs 位置编码篇\)</span><a class="headerlink" href="#215-llms" title="Permanent link">&para;</a></h3>
+<p>2.15.1 什么是位置编码?</p>
+<p>2.15.1.1 什么是绝对位置编码?</p>
+<p>2.15.1.2 什么是相对位置编码?</p>
+<ul>
+<li><strong>旋转位置编码 RoPE篇</strong></li>
+</ul>
+<p>2.15.2 旋转位置编码 RoPE 思路是什么?</p>
+<p>2.15.3 推导一下 旋转位置编码 RoPE ?</p>
+<p>2.15.4 旋转位置编码 RoPE 有什么优点?</p>
+<p>2.15.5 旋转位置编码 RoPE 被哪些 LLMs 应用?</p>
+<h3 id="216"><span class="arithmatex">\(2.16 长度外推问题篇\)</span><a class="headerlink" href="#216" title="Permanent link">&para;</a></h3>
+<p>2.16.1 什么是 长度外推问题?</p>
+<p>2.16.2 长度外推问题 的 解决方法 有哪些?</p>
+<h3 id="217-llms-tokenizer"><span class="arithmatex">\(2.17 LLMs Tokenizer 篇\)</span><a class="headerlink" href="#217-llms-tokenizer" title="Permanent link">&para;</a></h3>
+<p>2.17.1 Byte-Pair Encoding(BPE)篇</p>
+<p>2.17.1.1 Byte-Pair Encoding(BPE) 如何构建词典?</p>
+<p>2.17.2 WordPiece 篇</p>
+<p>2.17.2.1 WordPiece 与 BPE 异同点是什么?</p>
+<p>2.17.3 SentencePiece 篇</p>
+<p>2.17.3.1 简单介绍一下 SentencePiece 思路?</p>
+<ul>
+<li><strong>对比篇</strong></li>
+</ul>
+<p>2.17.4 举例介绍一下 不同 大模型LLMs 的分词方式?</p>
+<p>2.17.5 介绍一下 不同 大模型LLMs 的分词方式 的区别?</p>
+<h3 id="218-layer-normalization"><span class="arithmatex">\(2.18 Layer Normalization 篇\)</span><a class="headerlink" href="#218-layer-normalization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Layer Norm 篇</strong></li>
+</ul>
+<p>2.18.1 Layer Norm 的计算公式写一下?</p>
+<ul>
+<li><strong>RMS Norm 篇 （均方根 Norm）</strong></li>
+</ul>
+<p>2.18.2 RMS Norm 的计算公式写一下?</p>
+<p>2.18.3 RMS Norm 相比于 Layer Norm 有什么特点?</p>
+<ul>
+<li><strong>Deep Norm 篇</strong></li>
+</ul>
+<p>2.18.4 Deep Norm 有什么优点?</p>
+<p>2.18.5 Deep Norm 思路?</p>
+<p>2.18.6 写一下 Deep Norm 代码实现?</p>
+<ul>
+<li>
+<p><strong>Layer normalization-方法篇</strong></p>
+</li>
+<li>
+<p><strong>Layer normalization-位置篇</strong></p>
+</li>
+</ul>
+<p>2.18.7 LN 在 LLMs 中的不同位置 有什么区别么?如果有，能介绍一下区别么?</p>
+<ul>
+<li><strong>Layer normalization 对比篇</strong></li>
+</ul>
+<p>2.18.8 LLMs 各模型分别用了 哪种 Layer normalization?</p>
+<h2 id="diffusion"><span class="arithmatex">\(Diffusion 面经\)</span><a class="headerlink" href="#diffusion" title="Permanent link">&para;</a></h2>
+<h3 id="11_1"><span class="arithmatex">\(1.1 写在前面\)</span><a class="headerlink" href="#11_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>32ecff7610e9a2fe0891e84b40279a0b2c2708e0:docs/README.md</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<details>
+  <summary class="bold-summary">为什么要为Diffusion单独开辟一个部分</summary>
+首先，将Diffusion部分纳入“大模型面经”这一篇章的主要考量，首先是其同属于“AIGC”这一领域，同时，是其模型参数量和训练需求（硬件需求如GPU，服务器等，数据需求如良好标注的图片，音频，或是视频数据集）都已经达到了所谓“大模型”的门槛，一如之前介绍的那样。
+
+这些需求都已经达到了高校难以企及的高度（both of them）。目前所有国内高校实验室，均没有能力复现StableDiffusion或是Sora，可灵这样的爆款，亦或是Open-Sora这样的开源项目。国内高校实验室的算力和数据储备，充其量完成一个基于特定模型的模块添加工作（如AnimateDiff），或是对于其某个能力的分析，对于一个较小模型的训练（绝大多数的论文）。究其原因，是由于Diffusion相关的工程结果可以快速商业化变现，变现速度甚至强于LLM。因而无论企业界还是学术界，哪怕是政界都很在关注这方面的研究，当下图像和音频扩散的理论研究已经研究的大差不差了。悲观地来讲，当下期待从实验室科研中获得真正上手实操的，SOTA级别的全流程图像或视频扩散模型的训练是完全不切实际的。
+
+如果想要真正的上手实操，可以考虑自主复现AudioLDM，即Audio Latent Diffusion Model的代码并自行训练（建议使用luchen云之类的云服务器，或是可以参加像钱彦旻老师这样的课题组来获得相关经历）。这是由于音频相对显存要求较低，并且相关研究已经开展很久，数据集易采集且详尽。
+
+其次想说的点是，请不要将“使用过Stable Diffusion 的ComfyUI”或是对Diffusion原理有一些粗浅理解就宣称掌握了Diffusion，哪怕是真的大量使用过SD，真的“很有prompt使用心得”，真的“很了解其数学概念”，或是上了哪边的“AI使用课程”。这些“自信”会给前沿开发者或是科研人员带来强烈不适。当然，有相关使用经验是一件锦上添花的事情，但也请务必扎根具体原理和代码给出更务实且严谨，有深度的理解。
+</details>
+
+<p>接下来是Diffusion相关原理部分。</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:docs/stablediffusion.md</p>
+<h3 id="12-diffusion">1.2 各类 Diffusion 模型原理篇<a class="headerlink" href="#12-diffusion" title="Permanent link">&para;</a></h3>
+<p>=======</p>
+<h3 id="12-diffusion_1"><span class="arithmatex">\(1.2 各类Diffusion模型原理篇\)</span><a class="headerlink" href="#12-diffusion_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>32ecff7610e9a2fe0891e84b40279a0b2c2708e0:docs/README.md</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>请注意，Diffusion模型是一个数学上很好理解的模型，这里只提供部分的常见内容及其较浅的讲解。深度理解建议查看原论文。</p>
+<p>1.2.1 DDPM算法原理部分：</p>
+<details>
+  <summary><strong>简述DDPM的算法流程：</strong></summary>
+
+1. 初始化：一般指去噪（模型推理）过程的初始化，指从带噪声的图像的设定开始（或纯高斯噪声）。
+
+2. 正向扩散：逐步向数据添加高斯噪声，直到数据完全转化为无结构的噪声。
+$$x_{t+1}=\alpha_{t} x_{t}+\beta_{t} \epsilon_{t}, \ \epsilon_{t} \sim \mathcal{N}(0,\mathcal{I})$$
+$$x_{t}=\bar{\alpha_t} x_{0}+\bar{\beta_t} \epsilon, \ \epsilon \sim \mathcal{N}(0,\mathcal{I})$$
+（关键点理解：(2)式可由(1)式逐步推得；其中，由式子可以看出，下一个时间步 $t$ 时刻的图像$x_{t}$是关于上一步图像$x_{t-1}$的高斯分布，$\alpha_{t}，\beta_{t}$为预设超参，满足$\alpha_{t}+\beta_{t}=1$，同时$\alpha_{t}$递减，$\bar{\alpha_t}$为$\alpha_{0}$到$\alpha_{t}$的累乘结果，一般来讲，存在线性递减或余弦递减两种超参方案，前者为DDPM初始论文的设置，后者为原作者在Improved DDPM论文中的对比设置）
+
+3. 反向去噪：通过模型预测并逐渐去掉每一步加入的噪声，还原得到无噪声的图像。
+$$p_{\theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1},\mu_{\theta}(x_{t},t),\Sigma_{\theta}(x_{t},t))$$
+（关键点理解：此处，$\theta$代表神经网络，下表意味为“神经网络预测结果”，这里通过神经网络预测上一时刻$x_{t-1}$的高斯分布，预测其均值和方差。而实际上，根据扩散过程的定义，我们可以推导均值为：$$\mu_{\theta}(x_{t},t)=\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{\beta_{t}}{1-\bar{\alpha_{t}}}\Sigma_{\theta}(x_{t},t))$$，因而这里神经网络本质上是在预测噪声，也是许多人直接成预训练扩散模型神经网络为“预训练去噪器”的一个原因；具体推理过程中，直接将之前对应时刻的图像替换成推理得到的分布中任意抽取结果当作上一时刻真实图像）
+
+4. 训练：使用反向传播算法更新模型参数，以最小化正向和反向过程之间的差异，即最小化每一时刻原始正向扩散的分布和反向扩散预测的分布之间的差异，也即每一时刻添加的实际噪声和预测的噪声结果的差异。
+
+5. 测试：对新的高噪声图像应用训练好的模型进行去噪。
+</details>
+
+<details>
+  <summary><strong>实现DDPM需要什么条件？</strong></summary>
+    1. 马尔可夫链：DDPM使用马尔可夫链来描述数据的扩散过程。马尔可夫链是一个随机过程，具有无记忆性，即在给定当前状态的情况下，未来的状态只依赖于当前状态。
+       这一点可以由上一点中的公式看出，上或下一时刻的图像结果只取决于当前时刻的图像和预设的超参。
+    2. 微小变化：DDPM通过逐步添加微小的高斯噪声来扩散数据。这些微小的变化是在数据中引入随机性的关键步骤。这由预设的超参实现。具体来讲，在公式中体现为$\beta_{t}$，即方差规模的大小
+    3. 高斯噪声变化：DDPM使用高斯噪声来模拟数据的扩散过程。高斯噪声是一种常见的随机噪声，也称为正态分布噪声。
+</details>
+
+<details>
+  <summary><strong>为什么DDPM加噪声的幅度是不一致的？</strong></summary>
+    前期加噪少是为了保持数据结构的完整性，后期加噪多是为了加速扩散过程，使得模型能够更快地从噪声中恢复出清晰的数据。
+    这一点在原论文作者Improved DDPM论文中有具体阐述
+</details>
+
+<details>
+  <summary><strong>DDPM预测噪声还是预测当前分布？</strong></summary>
+    由之前推导，本质上预测噪声，预测分布只是中间过程
+</details>
+
+<p>1.2.2 DDIM算法原理部分：</p>
+<details>
+  <summary><strong>DDIM是怎么实现加速采样的？</strong></summary>
+1. 确定性逆扩散
+
+在DDPM中，逆扩散过程是随机的。这意味着，在从某个噪声状态 $x_t$ 计算前一状态 $x_{t-1}$ 时，会引入随机噪声。具体来说，这一步涉及从一个条件高斯分布中采样。
+DDIM对这一过程做出了修改，去除了随机性，使逆扩散过程完全确定性。在DDIM中，$x_{t-1}$ 的计算直接依赖于 $x_t$ 和一个从网络学习到的噪声预测 $\epsilon_\theta(x_t, t)$。这种改动使得生成过程在给定相同的起始噪声和模型参数的情况下总是产生相同的结果，提高了过程的可重复性。
+
+2. 非马尔科夫跳步采样
+
+DDPM的采样过程是严格遵循时间顺序的，即每个时间步的输出依赖于其直接前一个时间步的状态，形成一个马尔科夫链。而DDIM允许在时间步之间进行更大的跳跃。这意味着可以直接从 $x_t$ 跳到 $x_{t-s}$（其中 $s > 1$），跳过一些中间状态。这种非马尔科夫的跳步采样大大减少了需要计算的总步骤数，从而加快了整个采样过程。
+
+3. 加速生成过程
+
+由于DDIM中的逆扩散是确定性的，并且支持跳步采样，它能显著加快生成过程。在实际应用中，如实时图像生成和视频处理等场景，这种加速非常有价值。
+
+4. 牺牲了一定的多样性
+
+虽然DDIM在效率和确定性方面有所增加，但这是以牺牲一定的输出多样性为代价的。在DDPM中，随机采样帮助探索多种可能的生成路径，从而增加了生成数据的多样性。DDIM的确定性路径意味着对于同一起始噪声，输出将总是相同的，这限制了模型输出的多样性。
+
+5. 理论上的调整
+
+在理论上，DDIM还通过对扩散和逆扩散方程的重新参数化（例如，通过改变噪声水平的方程）使其更适合非马尔科夫跳步采样和确定性逆扩散。这些改动涉及数学上的深入调整，以确保模型即使在大步长跳跃的情况下也能保持高质量的输出。
+</details>
+
+<details>
+  <summary><strong>DDIM是不是确定性生成，为什么？</strong></summary>
+    是确定性⽣成。因为在逆向去噪声过程中，DDIM的逆推公式，将随机噪声的部分置为0。具体来讲，原先生成过程相当于在得到每一步结果后基于该时间步的分布会进行一次随机采样，改进后取消了该随机采样，因而对于预训练完成的模型来讲，对于给定时间$t$和图像$x_{t}$，生成的指定时间步图像固定
+</details>
+<p>1.2.3 Score-Based-diffusion-model：</p>
+<details>
+  <summary><strong>提供了什么解释扩散模型的等价方式？</strong></summary>
+- 提供了⼀种解释扩散模型的等价⽅式，其中降噪过程可以看作是沿着分数（梯度）前进。
+- 这也是本整理者比较推崇的一种扩散模型解释。可以理解为，预训练扩散模型是一张导引地图，指示旅行者寻找路径攀上高山（概率高峰）的导引图
+</details>
+<p>1.2.4 高阶采样方案：</p>
+<details>
+  <summary><strong>是否了解DPM++等加速采样方案？</strong></summary>
+  "通过ODE对扩散模型进行建模，通过解析解的形式解构扩散模型求解步骤"
+</details>
+
+<p>1.2.5 特征编码篇：</p>
+<details>
+  <summary><strong>介绍一下CLIP编码？</strong></summary>
+  "构建大规模的图像-文本数据构建（文本，图像）pair对，在其他下游子任务中取得极高的zero-shot指标"
+</details>
+
+<details>
+  <summary><strong>CLIP编码特征的优缺点？</strong></summary>
+优点：泛化性能强，特征在同⼀空间下衡量，模型简单不需要额外训练。
+
+缺陷：⽂本描述简单“A photo of a xxx”，图⽂理解能⼒偏弱
+</details>
+
+<details>
+  <summary><strong>介绍一下BLIP/BLIP2的原理？</strong></summary>
+BLIP：通过多路损失函数，以及图像分快理解策略等算法，构建⾼质量的图像理解模型。
+
+BLIP2：在BLIP基础上，利用Q-Former构建图像与⼤语⾔模型之间的桥梁，充分利⽤⼤语⾔模型⾃身的预训练能⼒
+</details>
+
+<details>
+  <summary><strong>为什么BLIP/BLIP2的特征没法直接用？</strong></summary>
+  "因为受到图文一致性等隐形损失约束，相关特征不再同一个特征空间下（无法直接用距离衡量图文特征的相似性）。因此无法像CLIP一样“直接”接入模型中使用"
+</details>
+
+<p>1.2.6 Stable Diffusion篇：</p>
+<details>
+  <summary><strong>Stable Diffusion的核心优化是什么？</strong></summary>
+  "通过VAE将特征映射到Latent Space，大幅减少运算量的同时还能保证生成质量。通过Unet实现对生成内容的引导"
+</details>
+
+<details>
+  <summary><strong>Stable Diffusion是怎么训练的？</strong></summary>
+    从训练集中选取一张加噪过的图片和噪声强度
+    输入unet，让unet预测噪声图
+    计算和真正的噪声图之间的误差
+    通过反向传播更新unet的参数
+
+</details>
+
+<details>
+  <summary><strong>VAE为什么会导致图像变模糊？</strong></summary>
+  "VAE编解码整体是一个有损过程，可以选择减少损失，比如优化模型结构，提升采样效率等。完全不减少损失的方案就是原图反贴"
+</details>
+
+<details>
+  <summary><strong>介绍一下SD，Dall-E2两者的异同？</strong></summary>
+Dalle2通过自回归的方式逐个预测像素点，最终生成符合描述的图像。
+
+SD加⼊了Latent-Space（⼤幅降低特征维度），以及交叉注意⼒机制+Unet的步骤，更精细更可控
+</details>
+
+<details>
+  <summary><strong>介绍一下classifier-free guidance和Classifier Guidance？</strong></summary>
+Classifier Guidance的一般流程如下：首先单独预训练一个噪声鲁棒的分类器模型。然后训练一个普通的无条件Diffusion模型。Diffusion模型生成图像的采样过程中,利 用预训练好的分类器来提供条件信号。具体来说,就是每个采样步骤都计算分类器的输 出,获得条件影响项,加入到Diffusion模型的更新公式中。这样就可以利用分类器的条 件信号,实现Diffusion模型在推理阶段条件生成图像的目的。
+
+Classifier-Free Guidance 中，⽣成模型不仅仅学习如何根据给定的条件⽣成数据，⽽且还学习如何在没有任何条件输⼊的情况下⽣成数据。换句话说，模型既能进⾏条件⽣成，也能进⾏⽆条件⽣成。CFG的训练过程其实就是对提供的条件输入做随机的dropout，这样就可以得到一个无条件和条件提示的两个输出，然后学习二者之间的方向差指导采样过程。在⽣成过程中，Classifier-Free Guidance 允许我们在没有显式使⽤分类器或判别器的情况下调节条件⽣成的强度。这是通过“调节”（或“混合”）条件⽣成和⽆条件⽣成的输出来实现的，以此来控制⽣成内容的相关性和多样性 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)    
+guidance scale是一个放缩系数，越大，生成的结果越倾向于输入条件，多样性会下降。 越小，多样性越大。
+</details>
+
+<details>
+  <summary><strong>Stable Diffusion怎么实现文本和图像的条件控制？</strong></summary>
+  "文本/图像编码器将文本/图像信息编码，然后通过交叉注意力机制将信息引入扩散模型。SD 的 U-Net 既用到了自注意力，也用到了交叉注意力。自注意力用于图像特征自己内部信息聚合。交叉注意力用于让生成图像对齐文本，其 Q 来自图像特征，K, V 来自文本编码"
+</details>
+<details>
+  <summary><strong>扩散模型添加时间步timestep信息？</strong></summary>
+  "通过类似于Transformer中的位置编码方法，将常数转换为向量并添加到输入图像中"
+</details>
+
+<details>
+  <summary><strong>Noise Scheduler了解吗？</strong></summary>
+  "Noise Scheduler定义了一个高斯分布，其均值和方差随着时间步的变化而变化，以控制噪声的添加量"
+</details>
+
+<details>
+  <summary><strong>Stable Diffusion核心模块有哪些？</strong></summary>
+    VAE：将图像特征/⽂本特征，映射到Latent Space。
+    LDM相关：Diffusion Model +Unet，去噪声核⼼步骤
+    Conditioning：作⽤于Unet的 Cross-Attention位置，实现对输出结果的控制
+
+</details>
+
+<details>
+  <summary><strong>为什么原生SD的控制效果不太好，需要引入如ControlNet的控制模型？</strong></summary>
+  "因为控制是一个隐性控制模型，通过CrossAttention的权重隐性引导生成结果，并不是完全控制"
+</details>
+
+<p>1.2.7 SDXL篇：</p>
+<details>
+  <summary><strong>SDXL的核心优化？</strong></summary>
+    接⼊级联的refiner模型+微调⽹络结构，⼤幅度提升⽣成质量。
+    多样化的训练策略，⼤幅提升基础模型表达能⼒
+</details>
+
+<details>
+  <summary><strong>SDXL的训练策略？</strong></summary>
+
+图像尺⼨条件化：把图像的尺⼨编码后作为信息输⼊到模型中。
+裁剪参数化训练：裁剪坐标也和尺⼨⼀样送⼊模型中。
+多尺度训练：多尺度+分桶
+噪声偏置：针对冷⻔⾊域，加⼊初始化噪声偏置
+</details>
+
+<p>1.2.8 Diffusion模型微调篇：</p>
+<ul>
+<li>
+<p>Lora：</p>
+<p>核⼼解读关键词：低秩展开，即插即⽤
+通过矩阵低秩展开，使⽤“外接”低秩展开后的⽹络对原模型进⾏更新</p>
+</li>
+<li>
+<p>Lora有没有什么优化方案？</p>
+<p>Locon/loha，分别进⾏细节质量和速度存储空间的优化</p>
+</li>
+<li>
+<p>DreamBooth：</p>
+<p>核⼼解读关键词：正则化微调整个⽹络，训练数据混合
+因为使⽤正则化，只在预训练⽹络上微调某类特定的case。 所以速度反⽽⽐Lora快得多</p>
+</li>
+</ul>
+<p>1.2.9 Textual Inversion（知识点）：</p>
+<ul>
+<li>关键词：⽂本embedding，Transformer</li>
+<li>核⼼总结：通过对Embedding层的特殊编码，实现通过不同输⼊⽂本，来影响模型最终的⽣成结果。影响的是Embedding的部分</li>
+<li>首先需要定义一个在现有模型中没有的关键词，新的关键词会和其他的关键词一样，生成Tokenizer(用不同的数字表示)；然后将其转换为embedding；text transformer会映射出对于新给的关键词最好的embedding向量。不用改变模型，可以看作在模型中寻找新的表征来表示新的关键字</li>
+</ul>
+<p>1.2.10 Lora/Dreambooth/Textual Inversion，核心差异点：
+- Lora：
+  "是小模型即插即用微调。"
+- Dreambooth：
+  "大模型特化全量微调"
+- Textual Inversion：
+  "Text-embedding 编码修改"</p>
+<p>1.2.11 控制模型篇：</p>
+<details>
+  <summary><strong>介绍一下ControlNet的核心原理？</strong></summary>
+    复制原⽣Unet⼀样的模型结构，前半部分encoder训练，后半部分⽤Zero Convolution 承接，decoder部分接⼊到模型Unet的⽹络层中
+    “Zero Convolution”即零卷积：是带有零初始化权重和偏差的1×1卷积。在进⾏⾃⼰的模型训练开始之前，所有零卷积输出都是零，此时模型仍然是原始的Stable Diffusion Model
+</details>
+
+<details>
+  <summary><strong>T2I Adapter?</strong></summary>
+  每张条件图片都会别额外编码，编码信息会被加入到 UNET 噪声预测中训练时候，冻结了原先的 unet，只对 Adapter 部分进行单独训练。
+</details>
+
+<details>
+  <summary><strong>IP-Adapter?</strong></summary>
+  IP-Adapter 通过带有解耦交叉注意力的适配模块，将文本特征的 Cross-Attention 和图像特征的 Cross-Attention 区分开来，在 Unet 的模块中新增了一路 Cross-Attention 模块，用于引入图像特征。
+</details>
+
+<p><a href="https://github.com/Joining-AI/LLM_Interview_Prepare"><img alt="GitHub stars" src="https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Joining-AI/LLM_Interview_Prepare" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../javascripts/mathjax_config.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,17 @@
+title: LLM Interview Prepare
+description: >- 
+  本仓库秉承开源精神，维护了关于大模型面试中常见面试试题和面试经验的整理，同时维护大模型相关的工作与求职机会。
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://joining-ai.github.io/LLM_Interview_Prepare/" # the base hostname & protocol for your site
+
+# Build settings
+theme: jekyll-theme-minimal
+
+# Navigation links
+nav_links:
+  - title: "Github Home"
+    url: "https://github.com/Joining-AI/LLM_Interview_Prepare"
+  - title: "Synthetic Data"
+    url: "https://joining-ai.github.io/SyntheticData/"
+  - title: "Agent"
+    url: "https://github.com/Joining-AI/JoinQwen"

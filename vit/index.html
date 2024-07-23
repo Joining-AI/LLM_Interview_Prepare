@@ -1,0 +1,666 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../stablediffusion/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>ViT - AIDIY Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.76a95c52.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AIDIY Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ViT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../llm/" class="md-tabs__link">
+        
+  
+    
+  
+  LLM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stablediffusion/" class="md-tabs__link">
+        
+  
+    
+  
+  StableDiffusion
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  ViT
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AIDIY Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stablediffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    StableDiffusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(基本预备知识\)：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(常见面经题目\)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(基本预备知识\)：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(常见面经题目\)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>ViT</h1>
+
+<style>
+  .label {
+      background-color: #80EB00;
+      color: black;
+      padding: 3px;
+      border-radius: 12px; /* 使方框为圆角 */
+  }
+  details summary {
+    list-style-type: disc;  /* 添加圆点序号 */
+    margin-left: 20px;      /* 增加与圆点的间距 */
+    font-weight: normal;    /* 确保文本不加粗 */
+    cursor: pointer;        /* 鼠标悬浮时显示为可点击状态 */
+  }
+
+  details summary strong {
+    font-weight: normal;    /* 确保 strong 标签中的文本不加粗 */
+  }
+
+  /* 鼠标悬浮时显示淡蓝色底色 */
+  details summary:hover {
+    background-color: rgb(192, 229, 241);
+  }
+
+  /* 用于加粗的类 */
+  .bold-summary {
+    font-weight: bold;
+  }
+
+  /* 展开后显示更淡的蓝色底色 */
+  details[open] summary {
+    background-color: rgb(240, 248, 255);
+  }
+
+  /* 展开的内容显示更淡的蓝色底色 */
+  details[open] {
+    background-color: rgb(240, 248, 255);
+    padding: 10px; /* 增加内边距以提高可读性 */
+    border-radius: 5px; /* 使边角稍微圆润 */
+  }
+</style>
+
+<p><a href="https://github.com/Joining-AI/LLM_Interview_Prepare"><img alt="GitHub stars" src="https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social" /></a>
+事实上，目前很少有能称为“大模型”的多模态模型。但依照现在的发展规模和速度，很快就会涌现出一大批参数量上逼近大模型门槛的模型，这也是添加其到“大模型面试准备”的一个重要原因。</p>
+<p>这里整理一系列与“多模态大模型”主题相关的面经资料和相关预备知识</p>
+<h3 id="_1"><span class="arithmatex">\(基本预备知识\)</span>：<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<details>
+  <summary><strong>CLIP模型</strong></summary> 
+（1）基本思想：文本和图像在特征域进行对齐
+
+（2）模型结构：
+- 文本编码器（BERT）
+-  图像编码器（ViT）
+-  对上面两个encoder提取的特征计算余弦距离对齐
+
+（3）训练目标：info-nce-loss (对比学习MoCo的对抗基因)
+
+（4）训练数据集：400million的图文对齐图片数据
+</details>
+
+<details>
+  <summary><strong>BLIP模型</strong></summary>
+（1）基本思想：深度嵌入联合编码器，同时使三个视觉语言模型上联合表现最佳：图像对文本对比学习、图像文本互翻译联合条件生成训练。
+
+（2）模型结构：Multimodal mixture of Encoder-Decoder
+- 多模态交叉编码器（ViT）
+- 串联文本编码器（BERT）
+- 串联Image-grounded text encoder: 在self-attention和FFN中间加一层cross-attention
+- 多模态Image-grounded text decoder: 用casual self-attention层（预测下一个token）代替了双向自注意力层（建立当前输入token的表达）
+
+（3）训练目标：
+- ITC loss（视图距离，生成图像和文本编码器距离）；
+- ITM loss（视图距离，生成图像和文本编码器）； 
+- LM loss（语言生成，优化图像和文本编码器在语言建模应用可互式交互生成的效果。
+这三种损失（loss）是在多模态（图文）模型中常用的，用以优化图文对齐和生成性能。以下是对这三种损失的详细介绍：
+
+1. **ITC loss (Image-Text Contrastive loss)**
+   - **目的**：优化图文对齐的编码器，改善图像和文本之间的语义匹配。
+   - **工作原理**：这种损失函数通常通过对比学习实现，即通过最大化匹配图文对的相似性，同时最小化不匹配对的相似性。实现方式通常涉及计算图像和文本嵌入之间的距离或相似度，并使用如负对数似然这样的方法进行优化。
+   - **应用**：这种方法在提升图文嵌入在同一向量空间中的表现上非常有效，有助于后续的检索和分类任务。
+
+2. **ITM loss (Image-Text Matching loss)**
+   - **目的**：优化图文匹配能力，用于更细致地判定图像内容与文本描述之间的匹配程度。
+   - **工作原理**：这种损失通常用于二分类任务，即判断给定的图像和文本是否匹配。模型需要学习区分哪些图文组合是真实相关的，哪些是随机组合的。这通常通过一个有监督的学习过程来完成，其中正例是实际匹配的图文对，而负例是不匹配的图文对。
+   - **应用**：这有助于模型在更复杂的多模态场景下进行准确的内容理解和生成，常用于自动图文生成、图文同步解读等应用。
+
+3. **LM loss (Language Modeling loss)**
+   - **目的**：主要用于语言生成任务，尤其是在图文交互生成中的应用，通过优化模型的语言生成能力来增强交互性。
+   - **工作原理**：这种损失函数通常用于评估模型生成的文本与实际文本之间的一致性。在图文模型中，可以使用图像作为上下文来生成描述文本，并通过计算生成文本和真实描述之间的交叉熵损失来优化模型。
+   - **应用**：这种方法使得模型不仅能够理解图像内容，还能基于理解生成准确、自然的语言描述，常用于图像描述、自动文案生成等任务。
+
+（4）训练数据集：
+- COCO
+- Visual Genome
+- 网络数据：Conceptual Captions 3M,  Conceptual 12M（视图数据），SBU Captions
+- 另外进行一个额外的拍摄照片文本对齐的web模型数据 LAION (115M 图片)
+</details>
+
+<details>
+  <summary><strong>BLIP2模型</strong></summary>
+（1）基本思想：两个阶段，通过利用预训练好的视觉模型和语言模型来提升多模态效果和降低训练成本。
+
+（2）模型结构：
+    BLIP-2 由预训练的Image Encoder，预训练的Large Language Model，和一个可学习的 Q-Former 组成。
+-  Image Encoder：从输入图片中提取视觉特征，尝试了两种网络结构，CLIP 训练的 ViT-L/14和EVA-CLIP训练的 ViT-g/14（去掉了最后一层）。
+- Large Language Model：大语言模型进行文本生成，尝试了接入decoder-based LLM 和 encoder-decoder-based LLM两种结构。
+- Q-Former：弥补视觉和语言两种模态的modality gap，可以理解为固定图像编码器和固定LLM之间的**信息枢纽**，选取最有用的视觉特征给LLM来生成文本。
+
+（3） 训练目标：
+- ITC loss（偏理解）：图文对比学习，对其图文特征空间；
+- ITG loss（偏生成）：确定输入图像生成文本描述，迫使Query提取包含文本信息的特征；
+- ITM loss（偏理解）：图文匹配二分类，图文表示的细粒度对齐。
+
+（4）训练数据
+- BLIP运用的数据集
+- 利用提出的CapFilt方法从网络图中提取匹配的图文对，然后对文字描述内容进行filter，得到有利于训练的caption
+</details>
+
+<ol>
+<li>BEIT方法</li>
+</ol>
+<h3 id="_2"><span class="arithmatex">\(常见面经题目\)</span><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>CLIP和BEIT V3的区别;</li>
+<li>BEIT V3除了BERT外还有别的特殊的设计吗;</li>
+<li>V3和V2的 embbeding有什么不同;</li>
+<li>VIT的patch怎么做的;</li>
+<li>224* 224 * 3的图像做成14 * 14的patch的话，最后sequence的长度是多少;</li>
+<li>Transformer里的position encoding怎么做的;</li>
+<li>相对位置编码和绝对位置编码有什么区别吗;</li>
+<li>具体实现相对位置编码该怎么做;</li>
+<li>CV领域有哪些其他的预训练的模型;</li>
+<li>什么是对比学习;</li>
+<li>coco,simclr等对比学习方法是怎么具体做的；</li>
+</ol>
+<p><a href="https://github.com/Joining-AI/LLM_Interview_Prepare"><img alt="GitHub stars" src="https://img.shields.io/github.com/Joining-AI/LLM_Interview_Prepare?style=social" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Joining-AI/LLM_Interview_Prepare" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../javascripts/mathjax_config.js"></script>
+      
+    
+  </body>
+</html>
