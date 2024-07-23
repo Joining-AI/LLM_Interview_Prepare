@@ -40,7 +40,9 @@
 </style>
 
 
-[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)### 1.1 写在前面
+[![GitHub stars](https://img.shields.io/github/stars/Joining-AI/LLM_Interview_Prepare?style=social)](https://github.com/Joining-AI/LLM_Interview_Prepare)
+
+### 1.1 写在前面
 
 <details>
   <summary class="bold-summary">为什么要为Diffusion单独开辟一个部分</summary>
