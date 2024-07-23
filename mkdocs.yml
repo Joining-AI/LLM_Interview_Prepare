@@ -1,0 +1,43 @@
+site_name: AIDIY Wiki
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - attr_list
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - javascripts/mathjax_config.js
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css
+nav:
+  - Home: index.md
+  - LLM: llm.md
+  - StableDiffusion: stablediffusion.md
+  - ViT: vit.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Joining-AI/LLM_Interview_Prepare
+      text: Star on GitHub
